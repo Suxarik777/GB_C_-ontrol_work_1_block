@@ -23,7 +23,7 @@ string InputString(string text)
     return word;
 }
 
-string[] InputArrayString(int length)
+string[] FillArrayString(int length)
 {
     string[] arrayString = new string[length];
     for(int i = 0; i < arrayString.Length; i++)
@@ -41,6 +41,10 @@ void PrintArray(string[] array)
 }
 
 
+
 int arrayLength = InputNumber("Сколько элементов вы хотите задать?: ");
-string[] arrayWord = InputArrayString(arrayLength);
+string[] arrayWord = FillArrayString(arrayLength);
+
+Console.WriteLine("Исходный массив данных: ");
 PrintArray(arrayWord);
+
