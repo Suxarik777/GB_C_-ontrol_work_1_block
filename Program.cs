@@ -40,6 +40,15 @@ void PrintArray(string[] array)
     Console.WriteLine();
 }
 
+string[] ArrayFilter(string[] array)
+{
+    string[] newArray = new string[array.Length];
+    for(int i = 0; i < array.Length; i++)
+    {
+        if(array[i].Length <= 3) newArray[i] = array[i];
+    }
+    return newArray;
+}
 
 
 int arrayLength = InputNumber("Сколько элементов вы хотите задать?: ");
@@ -48,3 +57,7 @@ string[] arrayWord = FillArrayString(arrayLength);
 Console.WriteLine("Исходный массив данных: ");
 PrintArray(arrayWord);
 
+string[] resultArrayWord = ArrayFilter(arrayWord);
+
+Console.WriteLine("Результат работы программы: ");
+PrintArray(resultArrayWord);
