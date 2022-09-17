@@ -40,14 +40,22 @@ void PrintArray(string[] array)
     Console.WriteLine();
 }
 
-string[] ArrayFilter(string[] array)
+string[]? ArrayFilter(string[] array)
 {
-    string[] newArray = new string[array.Length];
+    string[] helpArray = new string?[array.Length];
     for(int i = 0; i < array.Length; i++)
-    {
-        if(array[i].Length <= 3) newArray[i] = array[i];
-    }
-    return newArray;
+        if(array[i].Length <= 3) helpArray[i] = array[i];
+
+    int numberEmptyElements = 0;
+    for(int i = 0; i < helpArray.Length; i++) //сколько пустых ячеек?
+        if(helpArray[i] == null) numberEmptyElements++;   
+
+    string[] newArray = new string[helpArray.Length - numberEmptyElements];
+    for(int i = 0; i < newArray.Length; i++)
+        newArray[i] = helpArray[i];
+
+    if(numberEmptyElements == helpArray.Length) return null;
+    else return  newArray;
 }
 
 
@@ -57,7 +65,12 @@ string[] arrayWord = FillArrayString(arrayLength);
 Console.WriteLine("Исходный массив данных: ");
 PrintArray(arrayWord);
 
-string[] resultArrayWord = ArrayFilter(arrayWord);
+string[]? resultArrayWord = ArrayFilter(arrayWord);
 
-Console.WriteLine("Результат работы программы: ");
-PrintArray(resultArrayWord);
+if(resultArrayWord == null) 
+    Console.WriteLine("Все элементы имеют больше 3 символов");
+else
+{
+    Console.WriteLine("Результат работы программы: ");
+    PrintArray(resultArrayWord);
+}
